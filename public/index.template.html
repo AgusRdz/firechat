@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Taller de Programacion Web">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FireChat</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pnotify.custom.min.css">
+  </head>
+  <body>
+    <div class="row">
+      <header>
+         <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand navbar-left" href="/" class="logo-link">
+                FireChat
+              </a> 
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                      <li><a class="google-auth" id="google_auth" href="#"><span class="fa fa-sign-in"></span> Iniciar sesion</a></li>
+                      <li><a class="logout hide" id="logout" href="#"><span class="fa fa-sign-out"></span> Cerrar Sesion</a></li>  
+                    </ul>
+                </div>
+            </div>
+        </nav>
+      </header>
+    </div>
+    <div class="row content">
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-4" id="avatar"></div>
+          <div class="col-md-8" id="details"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 blank"></div>
+          <div class="col-md-12">
+            <h3>Tecnologias implementadas</h3>
+          </div>
+          <div class="col-md-12">
+            <ul>
+              <li>Node.js</li>
+              <li>Google Firebase</li>
+              <li>Bootstrap 3</li>
+              <li>jQuery</li>
+              <li>Javascript</li>
+              <li>Moment.js</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <span class="fa fa-comment"></span> Conversacion
+          </div>
+          <div id="messages" class="panel-body msg_container_base">
+            <div class="row msg_container base_sent hide" id="demo_sent">
+              <div class="col-md-1 col-xs-1"></div>
+              <div class="col-md-10 col-xs-10">
+                <div class="messages msg_sent">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, aliquid eum? Ab beatae quod vero corrupti, animi atque quidem. Doloremque illum quos obcaecati maiores quisquam ab itaque est unde dolorem.
+                  </p>
+                  <time datetime="2009-11-13T20:00">51 min</time>
+                </div>
+              </div>
+              <div class="col-md-1 col-xs-1 user">
+                <img src="/assets/images/blue-user-icon.png" class="img-circle img-responsive ">
+              </div>
+            </div>
+            <div class="row msg_container base_receive hide" id="demo_receive">
+              <div class="col-md-2 col-xs-2 user">
+                <img src="/assets/images/green-user-icon.png" class="img-circle img-responsive ">
+              </div>
+              <div class="col-md-10 col-xs-10">
+                <div class="messages msg_receive">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed cupiditate voluptas magnam, perferendis aspernatur debitis quo, explicabo adipisci blanditiis. Voluptas quo at qui excepturi nam, unde velit debitis iusto vero.
+                  </p>
+                  <time datetime="2009-11-13T20:00">51 min</time>
+                </div>
+              </div>
+              <div class="col-md-1 col-xs-1"></div>
+            </div>
+          </div>
+          <div class="panel-footer clearfix">
+            <form id="form" action="#">
+              <div class="form-group">
+                <input type="text" autocomplete="off" maxlength="100" id="message" class="form-control" placeholder="Escribe un mensaje...">
+              </div>
+              <input type="file" id="capture" accept="image/*,capture=camera">
+              <button id="send" class="btn btn-success pull-right" title="Enviar mensaje" type="submit">
+                <span class="fa fa-paper-plane"></span>
+              </button>
+              <button id="image" title="Enviar imagen" class="btn btn-default pull-right">
+                <span class="fa fa-file"></span>
+              </button>
+            </form>                      
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <footer>
+        <div class="navbar navbar-inverse navbar-fixed-bottom"> 
+          <div class="container">
+            <p class="copyright"> &copy; ClickIt Tech. <span id="year"></span></p>       
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script type="text/javascript" src="assets/js/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script type="text/javascript" src="assets/js/pnotify.custom.min.js"></script>
+    <script type="text/javascript" src="assets/js/moment.js"></script>
+    <script>
+      // Initialize firebase
+      var config = {
+          apiKey: "{api-key}",
+          authDomain: "{project-name}.firebaseapp.com",
+          databaseURL: "https://{project-name}.firebaseio.com",
+          projectId: "{project-name}",
+          storageBucket: "{project-name}.appspot.com",
+          messagingSenderId: "740385021876"
+        };
+        firebase.initializeApp(config);
+
+        const messaging = firebase.messaging();
+
+        messaging.onMessage(function(payload) {
+        });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#year').text(new Date().getFullYear());     
+      });
+    </script>
+    <script type="text/javascript" src="assets/js/scripts.js"></script>
+  </body>
+</html>

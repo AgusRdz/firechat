@@ -1,0 +1,6 @@
+instrucciones.md
+.firebaserc
+/functions/node_modules
+/public/firebase-messaging-sw.js
+/public/index.html
+/public/assets/js/new.js
